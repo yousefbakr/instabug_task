@@ -10,3 +10,14 @@ docker build -t rails-toolbox \
        --build-arg USER_ID=$(id -u)  \
        --build-arg GROUP_ID=$(id -g) \
        -f Dockerfile.rails .
+       
+############Building our contianer for new Rails image to create our project drkiq#########################
+docker run -it \
+    -v $PWD:/opt/app \
+    rails-toolbox rails new --skip-bundle drkiq
+    
+############make all the needed changes in drkiq project ############################
+when it comes to Creating the Environment Variable File we can use 
+1-if we will build our container form CLI we can use –env, -e
+2- we can use Docker Compose to build our container and pass the env var to the container as below 
+#######################
