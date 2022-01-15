@@ -9,7 +9,7 @@ To build the image:
 docker build -t rails-toolbox \
        --build-arg USER_ID=$(id -u)  \
        --build-arg GROUP_ID=$(id -g) \
-       -f Dockerfile.rails .
+       -f Dockerfile .
        
 ############Building our contianer for new Rails image to create our project drkiq#########################
 docker run -it \
