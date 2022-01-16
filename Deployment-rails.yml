@@ -44,19 +44,19 @@ spec:
     app: rails-app
   ports:
     - protocol: TCP
-      port: 8090
+      port: 8000
       targetPort: 8020
       name: http
 ---
-apiVersion: v1
+apiVersion: networking.k8s.io/v1beta1
 kind: Ingress 
 metadata: 
-  name: frontend-ingress 
+  name: rails-ingress 
 spec:
   rules: 
   - http: 
        paths: 
        - path: /api 
        backend: 
-         serviceName: frontend-svsvc
+         serviceName: ingress
          servicePort: 8000
