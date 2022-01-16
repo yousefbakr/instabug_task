@@ -30,7 +30,7 @@ Follow the steps to have our images on docker hub
 when it comes to depoly the image on k8s 
 
  Kubeclt apply -f Deployment-rails.yaml \
- kubectl apply -f Configmap.yml
+ kubectl apply -f Configmap.yml\
  kubectl apply -f Secrets.yml
 
  
