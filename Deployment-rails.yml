@@ -1,0 +1,48 @@
+apiVersion:  v1
+kind: Deployment
+metadata:
+    labels:
+        app: frontend
+    name: frontend
+spec:
+    replicas: 2
+    selector:
+        matchLabels:
+            app: frontend
+    template:
+        metadata:
+            labels:
+                app: frontend
+        spec:
+            containers:
+            - image: tomfern/dockerizing-ruby-drkiq:latest
+              imagePullPolicy: IfNotPresent
+              name: frontend
+---
+apiVersion: v1 
+kind: Service 
+metadata:
+ labels:
+   app: frontend 
+ name: frontend-svc 
+spec:
+ ports: 
+ - port: 8000 
+   protocol: TCP
+   targetPort: 8080
+ selector:
+    app: frontend
+ type: ClusterIP
+---
+apiVersion: v1
+kind: Ingress 
+metadata: 
+  name: frontend-ingress 
+spec:
+  rules: 
+  - http: 
+       paths: 
+       - path: /api 
+       backend: 
+         serviceName: frontend-svsvc
+         servicePort: 8000
