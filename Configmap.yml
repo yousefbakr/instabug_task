@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env-var
+data:
+  USER_ID=1000
+  GROUP_ID=1000
+  SECRET_TOKEN=Wa4Kdu6hMt3tYKm4jb9p4vZUuc7jBVFw
+  WORKER_PROCESSES=1  
+  LISTEN_ON=0.0.0.0:8010
+  DATABASE_URL=postgresql://drkiq:test_db_password@postgres:5432/drkiq?encoding=utf8&pool=5&timeout=5000
+  CACHE_URL=redis://redis:6379/0
+  JOB_WORKER_URL=redis://redis:6379/0
+  PORT: "3000"
+  RACK_ENV: production
+  RAILS_ENV: production
+  RAILS_LOG_TO_STDOUT: "true"
+  RAILS_SERVE_STATIC_FILES: "true"
+  SECRET_KEY_BASE: "Qy6VTnREtzwBbzgvxY2LJA5QQwFNex4wUtj2qNTTnSXtHykdZM"
+  DATABASE_NAME: "zrgyfclw"
+  DATABASE_USER: "zrgyfclw"
+  DATABASE_PASSWORD: "5br8zs-McuU5ISx_cp5il97O183_FgYh"
+  DATABASE_HOST: "topsy.db.elephantsql.com"
+  DATABASE_PORT: "5432"
