@@ -19,5 +19,14 @@ docker run -it \
 ############make all the needed changes in drkiq project ############################
 when it comes to Creating the Environment Variable File we can use \
 1-if we will build our container form CLI we can use –env, -e \
-2- we can use Docker Compose to build our container and pass the env var to the container as below \
-#######################
+2- we can use Docker Compose to build our container and pass the env var to the container  \
+
+#######################After adding volumes & intialize Database ###############
+we can run :
+docker-compose up
+
+Follow the steps to have our images on docker hub 
+################################################################################33
+when it comes to depoly the image on k8s 
+
+ Kubeclt apply -f Deployment-rails.yaml
