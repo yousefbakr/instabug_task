@@ -15,13 +15,24 @@ spec:
             containers:
             - env:
               - name: PORT
-                value: "3000"
+                value: "8020"
               envFrom:
               - configMapRef:
                   name: env-var
               - image: tomfern/dockerizing-ruby-drkiq:latest
                 imagePullPolicy: IfNotPresent
                 name: rails-app
+                ports:
+                - containerPort: 3000
+                   name: http
+                   protocol: TCP
+                readinessProbe:
+                  httpGet:
+                    path: /
+                    port: 8020
+                  initialDelaySeconds: 10
+                  periodSeconds: 10
+                  timeoutSeconds: 2
 ---
 apiVersion: v1
 kind: Service
@@ -33,8 +44,8 @@ spec:
     app: rails-app
   ports:
     - protocol: TCP
-      port: 80
-      targetPort: 3000
+      port: 8090
+      targetPort: 8020
       name: http
 ---
 apiVersion: v1
