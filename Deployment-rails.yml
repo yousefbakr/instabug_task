@@ -1,4 +1,4 @@
-apiVersion:  v1
+apiVersion:  apps/v1
 kind: Deployment
 metadata:
     labels:
@@ -8,31 +8,30 @@ spec:
     replicas: 2
     selector:
         matchLabels:
-            app: frontend
+            app: rails-app
     template:
         metadata:
             labels:
-                app: frontend
+                app: rails-app
         spec:
             containers:
             - image: tomfern/dockerizing-ruby-drkiq:latest
               imagePullPolicy: IfNotPresent
               name: frontend
 ---
-apiVersion: v1 
-kind: Service 
+apiVersion: v1
+kind: Service
 metadata:
- labels:
-   app: frontend 
- name: frontend-svc 
+  name: kubernetes-rails-load-balancer
 spec:
- ports: 
- - port: 8000 
-   protocol: TCP
-   targetPort: 8080
- selector:
-    app: frontend
- type: ClusterIP
+  type: LoadBalancer
+  selector:
+    app: rails-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+      name: http
 ---
 apiVersion: v1
 kind: Ingress 
