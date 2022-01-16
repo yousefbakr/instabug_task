@@ -37,7 +37,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubernetes-rails-load-balancer
+  name: rails-svc
 spec:
   type: LoadBalancer
   selector:
@@ -57,5 +57,5 @@ spec:
   - http: 
        paths:  
        - backend: 
-           serviceName: ingress
+           serviceName: rails-svc
            servicePort: 8000
