@@ -9,24 +9,24 @@ kubectl create secret generic secret-key-base --from-literal=secret-key-base=50d
 kubectl create -f kube/volumes/postgres_volumes.yaml
 ########################Create the Service and Deployment######################
 
-kubectl create -f postgres_svc.yaml
-kubectl create -f postgres_deploy.yaml
+kubectl create -f postgres_svc.yml
+kubectl create -f postgres_deployment.yml
 ##############Redis#######################
 ############Create the Service##################
 
 kubectl create -f redis_svc.yaml
-kubectl create -f redis_deploy.yaml
-
-kubectl create -f kube/jobs/setup.yaml
+kubectl create -f redis_deployment.yml
+###############create Job####################
+kubectl create -f setup.yml
 ##################Create the Rails Service#################
 
-kubectl create -f kube/services/rails_svc.yaml
+kubectl create -f rails_svc.yml
 
 
 ###################And the Deployment##################
 
-kubectl create -f kube/deployments/rails_deploy.yaml
+kubectl create -f  rails_deployment.yml
 
 ##################3Finally create the Ingress resource:###############
 
-kubectl create -f kube/ingresses/ingress.yaml
+kubectl create -f ingress.yml
