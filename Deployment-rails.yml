@@ -14,8 +14,11 @@ spec:
         spec:
             containers:
             - env:
-              - name: PORT
-                value: "8020"
+              name: SECRET_USERNAME
+               valueFrom:
+                  secretKeyRef:
+                     name: Secret-rails
+                     key: SECRET_TOKEN 
               envFrom:
               - configMapRef:
                   name: env-var
@@ -47,15 +50,3 @@ spec:
       port: 8000
       targetPort: 8020
       name: http
----
-apiVersion: networking.k8s.io/v1beta1
-kind: Ingress 
-metadata: 
-  name: rails-ingress 
-spec:
-  rules: 
-  - http: 
-       paths:  
-       - backend: 
-           serviceName: rails-svc
-           servicePort: 8000
