@@ -1,0 +1,32 @@
+Secrets
+Create the necessary secrets:
+
+kubectl create secret generic db-user-pass --from-literal=password=mysecretpass
+kubectl create secret generic db-user --from-literal=username=postgres
+kubectl create secret generic secret-key-base --from-literal=secret-key-base=50dae16d7d1403e175ceb
+##################################Create the volumes:Postgres#################
+
+kubectl create -f kube/volumes/postgres_volumes.yaml
+########################Create the Service and Deployment######################
+
+kubectl create -f postgres_svc.yaml
+kubectl create -f postgres_deploy.yaml
+##############Redis#######################
+############Create the Service##################
+
+kubectl create -f redis_svc.yaml
+kubectl create -f redis_deploy.yaml
+
+kubectl create -f kube/jobs/setup.yaml
+##################Create the Rails Service#################
+
+kubectl create -f kube/services/rails_svc.yaml
+
+
+###################And the Deployment##################
+
+kubectl create -f kube/deployments/rails_deploy.yaml
+
+##################3Finally create the Ingress resource:###############
+
+kubectl create -f kube/ingresses/ingress.yaml
