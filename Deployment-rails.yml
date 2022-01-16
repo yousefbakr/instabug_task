@@ -1,9 +1,7 @@
 apiVersion:  apps/v1
 kind: Deployment
 metadata:
-    labels:
-        app: frontend
-    name: frontend
+  name: kubernetes-rails-deployment
 spec:
     replicas: 2
     selector:
@@ -15,9 +13,15 @@ spec:
                 app: rails-app
         spec:
             containers:
-            - image: tomfern/dockerizing-ruby-drkiq:latest
-              imagePullPolicy: IfNotPresent
-              name: frontend
+            - env:
+              - name: PORT
+                value: "3000"
+              envFrom:
+              - configMapRef:
+                  name: env-var
+              - image: tomfern/dockerizing-ruby-drkiq:latest
+                imagePullPolicy: IfNotPresent
+                name: rails-app
 ---
 apiVersion: v1
 kind: Service
