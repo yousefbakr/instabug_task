@@ -55,8 +55,7 @@ metadata:
 spec:
   rules: 
   - http: 
-       paths: 
-       - path: /api 
-       backend: 
-         serviceName: ingress
-         servicePort: 8000
+       paths:  
+       - backend: 
+           serviceName: ingress
+           servicePort: 8000
